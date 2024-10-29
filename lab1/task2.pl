@@ -23,6 +23,9 @@ group_average(Group, Avg) :-
 % --- Получение таблицы групп и среднего балла ---
 % ?- group_average(Group, Avg).
 
+get_group_average_table(Table) :-
+    bagof((Group, Avg), group_average(Group, Avg), Table).
+
 
 % -------------------------------------------------------------------------------
 % 2) Для каждого предмета получить список студентов, не сдавших экзамен (grade=2)
@@ -35,6 +38,8 @@ failed_students_for_subject(Subject, FailedStudents) :-
 % --- Получение таблицы всех предметов и списков не сдавших студентов ---
 % ?- failed_students_for_subject(Subject, FailedStudents).
 
+get_failed_students_for_subject_table(Table) :-
+    bagof((Object, Students), failed_students_for_subject(Subject, FailedStudents), Table).
 
 % ----------------------------------------------------------
 % 3) Найти количество не сдавших студентов в каждой из групп
@@ -51,6 +56,8 @@ count_failed_students_for_group(Group, Count) :-
     % Считаем длину списка, то есть количество студентов, заваливших хотя бы один экзамен в группе
     length(FailedStudents, Count).
 
-
 % --- Получение таблицы групп и количества несдавших студентов них ---
 % ?- count_failed_students_for_group(Group, Count)
+
+get_count_failed_students_for_group_table(Table) :-
+    bagof((Group, Count), count_failed_students_for_group(Group, Count), Table).

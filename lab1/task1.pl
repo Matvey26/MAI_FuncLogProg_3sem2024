@@ -51,12 +51,12 @@ split_by_even([X | L], E, [X | O]) :- \+ even(X), split_by_even(L, E, O).
 % Пункт 6
 
 % Найти следующий элемент с такой же чётностью, как у данного
-next_even(X, L, Y) :-
+next_same(X, L, Y) :-
     split_by_even(L, E, _),
     even(X),
     next_1(X, E, Y).
 
-next_even(X, L, Y) :-
+next_same(X, L, Y) :-
     split_by_even(L, _, O),
     \+ even(X),
     next_1(X, O, Y).
